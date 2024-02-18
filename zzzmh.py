@@ -5,11 +5,7 @@ import execjs
 import requests
 import jmespath
 
-
-def read_file(p: str) -> str:
-    with open(p) as f:
-        return f.read()
-
+from common import read_file
 
 js_zzzmh = execjs.compile(read_file("./zzzmh-clear.sh.js"))
 
