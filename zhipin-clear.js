@@ -1,6 +1,39 @@
 let xxxxxxxxxxxxxzzzzzu = null;
-let window = {};
-let document = {};
+
+    var window = {
+    navigator: {
+        userAgent: ""
+    },
+    moveTo: function () {
+    },
+    moveBy: function () {
+    },
+    screen: {
+        availHeight: 1040,
+        availWidth: 1920
+    },
+    open: function () {
+        [nativecode]
+
+    }
+};
+var document = {
+    getElementById: function () {
+        glcanvaxs = {}
+    },
+    createElement: function () {
+        caption = {
+            tagName: "CAPTION",
+        };
+        return caption
+    },
+    title: ""
+};
+var top = {
+    location: {
+        href: "https://www.zhipin.com/web/common/security-check.html"
+    },
+};
 (function() {
     try {
         var l, c, a, _, e, p, t, o, n, v, d, i, y, r, u, s, f, g, b, h, m, q, w, k, z, x, j, C, S, N, V, E, T;
