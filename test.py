@@ -1,9 +1,8 @@
-import ddddocr
-from common import read_file
+from common import read_file, words
+from PIL import Image
 
 if __name__ == '__main__':
-    ocr = ddddocr.DdddOcr()
-
-    png = read_file('./a1.png', mode='rb')
-
-    print(ocr.classification(png))
+    img_path = 'ci_1_9.png'
+    img = Image.open(img_path)
+    for i, (word, pos) in enumerate(words(read_file(img_path, mode='rb'))):
+        print(i, word, pos)
