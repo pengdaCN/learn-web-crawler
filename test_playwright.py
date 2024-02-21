@@ -1,15 +1,15 @@
 import time
 
 from playwright.sync_api import sync_playwright
-from playwright.sync_api._generated import Route, Page
+from playwright.sync_api._generated import Route, Page, Request
 
 
-def allow_continue(route: Route):
+def allow_continue(route: Route, _: Request):
     print('continue:', route.request.url)
     route.continue_()
 
 
-def intercept_request(route: Route):
+def intercept_request(route: Route, _: Request):
     if not route.request.url.startswith(
             r'https://static.zhipin.com/fe-zhipin-geek/web/chat/v5126/static/js/app.896c12fe.js'):
         route.continue_()
@@ -55,8 +55,11 @@ if __name__ == '__main__':
         context = browser.new_context()
         # context.route("**/*", intercept_request)
         page = context.new_page()
-        # page.route("**/*", allow_continue)
+        page.route("**/*", allow_continue)
         # page.on('domcontentloaded', lambda: again_route(page))
-        page.goto('https://www.zhipin.com/web/geek/job?query=%E5%AE%89%E5%8D%93&city=101270100')
+        # page.goto('https://www.zhipin.com/web/geek/job?query=%E5%AE%89%E5%8D%93&city=101270100')
+        page.goto('https://www.baidu.com')
+        time.sleep(5)
+        page.goto('https://www.jd.com')
 
         time.sleep(1000)
