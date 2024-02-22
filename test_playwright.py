@@ -9,7 +9,7 @@ def allow_continue(route: Route, _: Request):
     route.continue_()
 
 
-def intercept_request(route: Route, _: Request):
+def intercept_request(route: Route):
     if not route.request.url.startswith(
             r'https://static.zhipin.com/fe-zhipin-geek/web/chat/v5126/static/js/app.896c12fe.js'):
         route.continue_()
@@ -43,23 +43,10 @@ def again_route(page: Page):
 if __name__ == '__main__':
     with sync_playwright() as pw:
         browser = pw.chromium.launch(
-            # executable_path=r'C:\Program Files\Google\Chrome\Application\chrome.exe',
-            # args=[
-            #     '--disable-features=ImprovedCookieControls,LazyFrameLoading,'
-            #     'GlobalMediaControls,DestroyProfileOnBrowserClose,MediaRouter,AcceptCHFrame'],
-            # ignore_default_args=True,
             devtools=True,
             headless=False,
         )
-        # browser = pw.firefox.launch(headless=True)
         context = browser.new_context()
-        # context.route("**/*", intercept_request)
         page = context.new_page()
-        page.route("**/*", allow_continue)
-        # page.on('domcontentloaded', lambda: again_route(page))
-        # page.goto('https://www.zhipin.com/web/geek/job?query=%E5%AE%89%E5%8D%93&city=101270100')
-        page.goto('https://www.baidu.com')
-        time.sleep(5)
-        page.goto('https://www.jd.com')
-
+        page.goto('https://www.zhipin.com/web/geek/job?query=%E5%AE%89%E5%8D%93&city=101270100')
         time.sleep(1000)
