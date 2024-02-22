@@ -4,3 +4,4 @@ PyExecJS~=1.5.1
 ddddocr~=1.4.11
 pillow~=10.2.0
 playwright~=1.41.2
+mitmproxy~=10.2.2
