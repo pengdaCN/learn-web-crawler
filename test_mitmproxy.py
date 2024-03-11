@@ -49,14 +49,16 @@ if __name__ == '__main__':
 
     time.sleep(5)
     with sync_playwright() as pw:
-        browser = pw.chromium.launch(
+        browser = pw.chromium.launch_persistent_context(
+            user_data_dir=r'C:\Users\admin\AppData\Local\Temp\1',
             headless=False,
+            channel='msedge',
             proxy={
-                "server": "127.0.0.1:8080"
+                "server": "127.0.0.1:8080",
             },
             args=['--ignore-certificate-errors']
         )
-        context = browser.new_context()
-        page = context.new_page()
+
+        page = browser.new_page()
         page.goto('https://www.zhipin.com/web/geek/job?query=%E5%AE%89%E5%8D%93&city=101270100')
-        time.sleep(1000)
+        page.wait_for_timeout(1000 * 1000)
