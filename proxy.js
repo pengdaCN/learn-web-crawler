@@ -18,9 +18,6 @@ function proxyAll(target, name = "") {
             }, defineProperty(target, prop, descriptor) {
                 console.log(`DEFINE PROPERTY ${prefix}.${prop}`);
                 return Reflect.defineProperty(target, prop, descriptor);
-            }, enumerate(target) {
-                console.log(`ENUMERATE`);
-                return Reflect.enumerate(target);
             }, ownKeys(target) {
                 console.log(`OWN KEYS`);
                 return Reflect.ownKeys(target);
